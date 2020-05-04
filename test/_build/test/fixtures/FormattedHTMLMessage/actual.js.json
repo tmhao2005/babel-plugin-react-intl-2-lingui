@@ -1,0 +1,20 @@
+{
+  "Hello {name}": {
+    "defaults": "Hello {name}",
+    "origin": [
+      [
+        "test/fixtures/FormattedHTMLMessage/actual.js",
+        7
+      ]
+    ]
+  },
+  "Online": {
+    "defaults": "Online",
+    "origin": [
+      [
+        "test/fixtures/FormattedHTMLMessage/actual.js",
+        14
+      ]
+    ]
+  }
+}

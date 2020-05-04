@@ -1,0 +1,20 @@
+{
+  "Hello": {
+    "defaults": "Hello",
+    "origin": [
+      [
+        "test/fixtures/FormattedMessage/actual.js",
+        8
+      ]
+    ]
+  },
+  "app.name": {
+    "defaults": "You",
+    "origin": [
+      [
+        "test/fixtures/FormattedMessage/actual.js",
+        9
+      ]
+    ]
+  }
+}
