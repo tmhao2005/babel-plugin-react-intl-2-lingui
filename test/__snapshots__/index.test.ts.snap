@@ -12,17 +12,18 @@ var _react = require(\\"react\\");
 
 var _react2 = require(\\"@lingui/react\\");
 
-var MyComponent = function MyComponent() {
-  return _react.React.createElement(_react.React.Fragment, null, _react.React.createElement(_react2.Trans, {
-    id: \\"Hello {name}\\",
-    defaults: \\"Hello {name}\\",
-    values: {
-      name: 'Hao'
-    }
-  }), _react.React.createElement(_react2.Trans, {
-    id: \\"Online\\",
-    defaults: \\"Online\\"
-  }));
+const MyComponent = () => {
+  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Hello {name}\\",
+      defaults: \\"Hello {name}\\",
+      values: {
+        name: 'Hao'
+      }
+    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Online\\",
+      defaults: \\"Online\\"
+    }))
+  );
 };
 
 exports.MyComponent = MyComponent;"
@@ -63,14 +64,15 @@ var _react = require(\\"react\\");
 
 var _react2 = require(\\"@lingui/react\\");
 
-var MyComponent = function MyComponent() {
-  return _react.React.createElement(_react.React.Fragment, null, _react.React.createElement(_react2.Trans, {
-    id: \\"Hello\\",
-    defaults: \\"Hello\\"
-  }), _react.React.createElement(_react2.Trans, {
-    id: \\"app.name\\",
-    defaults: \\"You\\"
-  }));
+const MyComponent = () => {
+  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Hello\\",
+      defaults: \\"Hello\\"
+    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"app.name\\",
+      defaults: \\"You\\"
+    }))
+  );
 };
 
 exports.MyComponent = MyComponent;"
