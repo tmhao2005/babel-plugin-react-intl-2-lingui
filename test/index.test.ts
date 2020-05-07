@@ -48,6 +48,14 @@ function transform(filePath: string, options = {}) {
   }
 
   return transformFileSync(filePath, {
+    presets: [
+      ['@babel/preset-env', {
+        "targets": {
+          "node": "current"
+        }
+      }],
+      '@babel/preset-react'
+    ],
     plugins: [plugin, getPluginConfig()],
   });
 }
