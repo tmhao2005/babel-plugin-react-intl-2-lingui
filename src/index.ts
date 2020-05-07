@@ -33,7 +33,7 @@ export default declare((api: any) => {
           unsupportedImports.push(elem.node.imported.name);
         }
       } else {
-        throw Error('Just only support named import');
+        throw Error('Just only support named import for now');
       }
 
       return list;
@@ -128,6 +128,7 @@ export default declare((api: any) => {
       processAttributes();
     } else {
       const name = jsxOpeningElementPath.get('name');
+      
       if (name.isJSXMemberExpression()) {
         const object = name.get('object') as NodePath<t.JSXIdentifier>;
         const property = name.get('property');
