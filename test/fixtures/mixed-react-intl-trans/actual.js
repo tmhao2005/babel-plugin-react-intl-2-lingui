@@ -1,6 +1,6 @@
 import { React } from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Trans, Plural } from "@lingui/react";
+import { Trans } from "@lingui/react";
 
 export const MyComponent = () => {
   return (
