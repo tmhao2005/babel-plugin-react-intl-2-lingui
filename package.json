@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-react-intl-2-lingui",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "build/index.js",
   "author": "Hao Tran",
   "license": "MIT",
