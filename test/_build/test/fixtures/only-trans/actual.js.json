@@ -1,0 +1,11 @@
+{
+  "Hello": {
+    "defaults": "Hello",
+    "origin": [
+      [
+        "test/fixtures/only-trans/actual.js",
+        6
+      ]
+    ]
+  }
+}

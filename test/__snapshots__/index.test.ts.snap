@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`fixtures output match: FormattedHTMLMessage 1`] = `
+exports[`fixtures output match: define-messages 1`] = `
 "\\"use strict\\";
 
 Object.defineProperty(exports, \\"__esModule\\", {
@@ -12,7 +12,99 @@ var _react = require(\\"react\\");
 
 var _react2 = require(\\"@lingui/react\\");
 
-const MyComponent = () => {
+var MyComponent = function MyComponent() {
+  var messages = {
+    hello: {
+      id: \\"Hello\\",
+      defaultMessage: \\"Hello\\"
+    }
+  };
+  return (/*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Hello\\",
+      defaults: \\"Hello\\"
+    })
+  );
+};
+
+exports.MyComponent = MyComponent;"
+`;
+
+exports[`fixtures output match: define-messages 2`] = `
+Object {
+  "Hello": Object {
+    "defaults": "Hello",
+    "origin": Array [
+      Array [
+        "test/fixtures/define-messages/actual.js",
+        13,
+      ],
+    ],
+  },
+}
+`;
+
+exports[`fixtures output match: mixed-react-intl-trans 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.MyComponent = void 0;
+
+var _react = require(\\"react\\");
+
+var _react2 = require(\\"@lingui/react\\");
+
+var MyComponent = function MyComponent() {
+  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Hello\\",
+      defaults: \\"Hello\\"
+    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"app.name\\",
+      defaults: \\"You\\"
+    }))
+  );
+};
+
+exports.MyComponent = MyComponent;"
+`;
+
+exports[`fixtures output match: mixed-react-intl-trans 2`] = `
+Object {
+  "Hello": Object {
+    "defaults": "Hello",
+    "origin": Array [
+      Array [
+        "test/fixtures/mixed-react-intl-trans/actual.js",
+        8,
+      ],
+    ],
+  },
+  "app.name": Object {
+    "defaults": "You",
+    "origin": Array [
+      Array [
+        "test/fixtures/mixed-react-intl-trans/actual.js",
+        9,
+      ],
+    ],
+  },
+}
+`;
+
+exports[`fixtures output match: only-formatted-message 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.MyComponent = void 0;
+
+var _react = require(\\"react\\");
+
+var _react2 = require(\\"@lingui/react\\");
+
+var MyComponent = function MyComponent() {
   return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
       id: \\"Hello {name}\\",
       defaults: \\"Hello {name}\\",
@@ -29,13 +121,13 @@ const MyComponent = () => {
 exports.MyComponent = MyComponent;"
 `;
 
-exports[`fixtures output match: FormattedHTMLMessage 2`] = `
+exports[`fixtures output match: only-formatted-message 2`] = `
 Object {
   "Hello {name}": Object {
     "defaults": "Hello {name}",
     "origin": Array [
       Array [
-        "test/fixtures/FormattedHTMLMessage/actual.js",
+        "test/fixtures/only-formatted-message/actual.js",
         7,
       ],
     ],
@@ -44,7 +136,7 @@ Object {
     "defaults": "Online",
     "origin": Array [
       Array [
-        "test/fixtures/FormattedHTMLMessage/actual.js",
+        "test/fixtures/only-formatted-message/actual.js",
         14,
       ],
     ],
@@ -52,7 +144,7 @@ Object {
 }
 `;
 
-exports[`fixtures output match: FormattedMessage 1`] = `
+exports[`fixtures output match: only-trans 1`] = `
 "\\"use strict\\";
 
 Object.defineProperty(exports, \\"__esModule\\", {
@@ -64,37 +156,25 @@ var _react = require(\\"react\\");
 
 var _react2 = require(\\"@lingui/react\\");
 
-const MyComponent = () => {
-  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+var MyComponent = function MyComponent() {
+  return (/*#__PURE__*/_react.React.createElement(_react2.Trans, {
       id: \\"Hello\\",
       defaults: \\"Hello\\"
-    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"app.name\\",
-      defaults: \\"You\\"
-    }))
+    })
   );
 };
 
 exports.MyComponent = MyComponent;"
 `;
 
-exports[`fixtures output match: FormattedMessage 2`] = `
+exports[`fixtures output match: only-trans 2`] = `
 Object {
   "Hello": Object {
     "defaults": "Hello",
     "origin": Array [
       Array [
-        "test/fixtures/FormattedMessage/actual.js",
-        8,
-      ],
-    ],
-  },
-  "app.name": Object {
-    "defaults": "You",
-    "origin": Array [
-      Array [
-        "test/fixtures/FormattedMessage/actual.js",
-        9,
+        "test/fixtures/only-trans/actual.js",
+        6,
       ],
     ],
   },

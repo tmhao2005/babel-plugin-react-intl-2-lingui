@@ -3,7 +3,7 @@
     "defaults": "Hello {name}",
     "origin": [
       [
-        "test/fixtures/FormattedHTMLMessage/actual.js",
+        "test/fixtures/only-formatted-message/actual.js",
         7
       ]
     ]
@@ -12,7 +12,7 @@
     "defaults": "Online",
     "origin": [
       [
-        "test/fixtures/FormattedHTMLMessage/actual.js",
+        "test/fixtures/only-formatted-message/actual.js",
         14
       ]
     ]

@@ -1,0 +1,11 @@
+{
+  "Hello": {
+    "defaults": "Hello",
+    "origin": [
+      [
+        "test/fixtures/define-messages/actual.js",
+        13
+      ]
+    ]
+  }
+}

@@ -3,7 +3,7 @@
     "defaults": "Hello",
     "origin": [
       [
-        "test/fixtures/FormattedMessage/actual.js",
+        "test/fixtures/mixed-react-intl-trans/actual.js",
         8
       ]
     ]
@@ -12,7 +12,7 @@
     "defaults": "You",
     "origin": [
       [
-        "test/fixtures/FormattedMessage/actual.js",
+        "test/fixtures/mixed-react-intl-trans/actual.js",
         9
       ]
     ]
