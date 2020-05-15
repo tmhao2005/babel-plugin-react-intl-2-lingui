@@ -20,7 +20,7 @@ export default declare((api: any) => {
     return path.isImportDeclaration() && moduleMap.has(path.node.source.value);
   }
 
-  function replaceTranslationModule(
+  function checkIfReactIntlInstalled(
     importPath: NodePath<t.ImportDeclaration>,
     file: any
   ) {
@@ -33,7 +33,7 @@ export default declare((api: any) => {
         if (elem.isImportSpecifier()) {
           const name = componentMap.get(elem.node.imported.name);
 
-          if (typeof name !== undefined) {
+          if (typeof name !== "undefined") {
             if (name && !addedNames.has(name)) {
               addedNames.set(name, elem);
 
@@ -45,7 +45,9 @@ export default declare((api: any) => {
             unsupportedImports.push(elem.node.imported.name);
           }
         } else {
-          throw Error("Just only support named import for now");
+          throw importPath.buildCodeFrameError(
+            "Just only support named import for now"
+          );
         }
 
         return list;
@@ -64,14 +66,15 @@ export default declare((api: any) => {
     return [importPath, replacedSpecifiers];
   }
 
-  function isTranslationComponent(
-    path: NodePath<t.JSXOpeningElement>
-  ): boolean {
+  function isReactIntlComponent(path: NodePath<t.JSXOpeningElement>): boolean {
     const name = path.get("name");
 
+    // case of namespace import? <intl.FormattedMessage />
+    //  but I yet support the namespace import, meaning this is unused for now
     if (name.isJSXMemberExpression()) {
       const object = name.get("object") as NodePath<t.JSXIdentifier>;
       const binding = object.scope.getBinding(object.node.name);
+
       if (binding) {
         const parentBinding = binding.path.parentPath;
         if (
@@ -91,16 +94,16 @@ export default declare((api: any) => {
   }
 
   function isReferencedToReactIntlModule(path: NodePath): boolean {
-    return Array.from(componentMap.keys()).some((k) =>
-      path.referencesImport(REACT_INTL_MODULE, k)
+    return Array.from(componentMap.keys()).some((item) =>
+      path.referencesImport(REACT_INTL_MODULE, item)
     );
   }
 
-  function genJsxAttribute(name: string, value: string) {
+  function buildJsxAttribute(name: string, value: string) {
     return t.jsxAttribute(t.jsxIdentifier(name), t.stringLiteral(value));
   }
 
-  function replaceTranslationJSXAttributes(
+  function replaceAttributes(
     jsxOpeningElementPath: NodePath<t.JSXOpeningElement>
   ) {
     const processAttributes = () => {
@@ -138,11 +141,14 @@ export default declare((api: any) => {
             if (parsed.confident) {
               if (propertyPath.isIdentifier()) {
                 const value = parsed.value[propertyPath.node.name];
+
                 item.replaceWithMultiple([
-                  genJsxAttribute("id", value.id),
-                  genJsxAttribute("defaults", value.defaultMessage),
+                  buildJsxAttribute("id", value.id),
+                  buildJsxAttribute("defaults", value.defaultMessage),
                 ]);
               }
+            } else {
+              throw new Error("We can't parse your message. Please check again");
             }
           }
         }
@@ -177,26 +183,18 @@ export default declare((api: any) => {
     }
   }
 
-  let hasTrans: boolean;
-  let didExit: boolean;
-  let replacedImports = [];
-
   return {
-    pre() {
-      replacedImports = [];
-    },
-
     visitor: {
       Program: {
         enter(path, { file }) {
+          const replacedImports = [];
           const lingImports: NodePath<t.ImportDeclaration>[] = [];
           const intlImports: NodePath<t.ImportDeclaration>[] = [];
 
           path.get("body").forEach((statement) => {
             if (statement.isImportDeclaration()) {
               if (isTranslationImport(statement)) {
-                hasTrans = true;
-                const result = replaceTranslationModule(
+                const result = checkIfReactIntlInstalled(
                   statement as NodePath<t.ImportDeclaration>,
                   file
                 );
@@ -212,6 +210,10 @@ export default declare((api: any) => {
               }
             }
           });
+
+          if (!replacedImports.length) {
+            return;
+          }
 
           if (intlImports.length > 1) {
             throw Error(
@@ -262,15 +264,11 @@ export default declare((api: any) => {
             },
 
             JSXElement(jsxElementPath) {
-              if (!hasTrans) {
-                return;
-              }
-
               const jsxOpenElementImportPath = jsxElementPath.get(
                 "openingElement"
               );
-              if (isTranslationComponent(jsxOpenElementImportPath)) {
-                replaceTranslationJSXAttributes(jsxOpenElementImportPath);
+              if (isReactIntlComponent(jsxOpenElementImportPath)) {
+                replaceAttributes(jsxOpenElementImportPath);
               }
             },
           });
@@ -282,12 +280,6 @@ export default declare((api: any) => {
               .get("source")
               .replaceWith(t.stringLiteral(LINGUI_MODULE));
           }
-        },
-
-        exit() {
-          // This will call if all the plugins have been called & run through
-          // Meaning ...
-          didExit = true;
         },
       },
     },

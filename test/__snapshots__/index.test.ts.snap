@@ -143,3 +143,40 @@ Object {
   },
 }
 `;
+
+exports[`fixtures output match: only-trans 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.MyComponent = void 0;
+
+var _react = require(\\"react\\");
+
+var _react2 = require(\\"@lingui/react\\");
+
+var MyComponent = function MyComponent() {
+  return (/*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Hello\\",
+      defaults: \\"Hello\\"
+    })
+  );
+};
+
+exports.MyComponent = MyComponent;"
+`;
+
+exports[`fixtures output match: only-trans 2`] = `
+Object {
+  "Hello": Object {
+    "defaults": "Hello",
+    "origin": Array [
+      Array [
+        "test/fixtures/only-trans/actual.js",
+        6,
+      ],
+    ],
+  },
+}
+`;
