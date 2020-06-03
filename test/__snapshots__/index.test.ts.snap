@@ -17,12 +17,19 @@ var MyComponent = function MyComponent() {
     hello: {
       id: \\"Hello\\",
       defaultMessage: \\"Hello\\"
+    },
+    'hey.you': {
+      id: \\"Hello, You\\",
+      defaultMessage: \\"Hey, You!\\"
     }
   };
-  return (/*#__PURE__*/_react.React.createElement(_react2.Trans, {
+  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
       id: \\"Hello\\",
       defaults: \\"Hello\\"
-    })
+    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+      id: \\"Hello, You\\",
+      defaults: \\"Hey, You!\\"
+    }))
   );
 };
 
@@ -36,7 +43,16 @@ Object {
     "origin": Array [
       Array [
         "test/fixtures/define-messages/actual.js",
-        13,
+        18,
+      ],
+    ],
+  },
+  "Hello, You": Object {
+    "defaults": "Hey, You!",
+    "origin": Array [
+      Array [
+        "test/fixtures/define-messages/actual.js",
+        19,
       ],
     ],
   },
