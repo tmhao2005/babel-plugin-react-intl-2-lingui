@@ -6,10 +6,17 @@ export const MyComponent = () => {
     hello: {
       id: "Hello",
       defaultMessage: "Hello",
+    },
+    'hey.you': {
+      id: "Hello, You",
+      defaultMessage: "Hey, You!",
     }
   });
 
   return (
-    <FormattedMessage {...messages.hello} />
+    <>
+      <FormattedMessage {...messages.hello} />
+      <FormattedMessage {...messages['hey.you']} />
+    </>
   )
 }

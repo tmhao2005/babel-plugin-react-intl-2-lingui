@@ -4,7 +4,16 @@
     "origin": [
       [
         "test/fixtures/define-messages/actual.js",
-        13
+        18
+      ]
+    ]
+  },
+  "Hello, You": {
+    "defaults": "Hey, You!",
+    "origin": [
+      [
+        "test/fixtures/define-messages/actual.js",
+        19
       ]
     ]
   }

@@ -132,15 +132,21 @@ export default declare((api: any) => {
         } else if (item.isJSXSpreadAttribute()) {
           const argument = item.get("argument");
 
-          // use case: {...messages.foo}
+          // use case: {...messages.foo} || {...messages['foo']}
           if (argument.isMemberExpression()) {
             const propertyPath = argument.get("property") as NodePath;
             const object = argument.get("object");
             const parsed = object.evaluate();
 
             if (parsed.confident) {
-              if (propertyPath.isIdentifier()) {
-                const value = parsed.value[propertyPath.node.name];
+              if (
+                propertyPath.isIdentifier() ||
+                propertyPath.isStringLiteral()
+              ) {
+                const messageId = propertyPath.isIdentifier()
+                  ? propertyPath.node.name
+                  : propertyPath.node.value;
+                const value = parsed.value[messageId];
 
                 item.replaceWithMultiple([
                   buildJsxAttribute("id", value.id),
@@ -148,7 +154,9 @@ export default declare((api: any) => {
                 ]);
               }
             } else {
-              throw new Error("We can't parse your message. Please check again");
+              throw new Error(
+                "We can't parse your message. Please check again"
+              );
             }
           }
         }
