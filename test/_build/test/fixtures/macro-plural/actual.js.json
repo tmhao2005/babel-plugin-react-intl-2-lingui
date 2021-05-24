@@ -1,0 +1,19 @@
+{
+  "Hello": {
+    "defaults": "Hello",
+    "origin": [
+      [
+        "test/fixtures/macro-plural/actual.js",
+        9
+      ]
+    ]
+  },
+  "{tally, plural, one {1 person} other {# people}}": {
+    "origin": [
+      [
+        "test/fixtures/macro-plural/actual.js",
+        10
+      ]
+    ]
+  }
+}

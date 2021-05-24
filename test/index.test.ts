@@ -12,7 +12,7 @@ const localeDir = join(__dirname, "_build/test/fixtures");
 
 describe("fixtures", () => {
   fs.readdirSync(fixturesDir).map((caseName) => {
-    // if (caseName !== 'define-messages') return;
+    // if (caseName !== 'macro-plural') return;
 
     it(`output match: ${caseName}`, () => {
       const fixtureDir = join(fixturesDir, caseName);
@@ -50,6 +50,6 @@ function transform(filePath: string, options = {}) {
 
   return transformFileSync(filePath, {
     presets: ["@babel/preset-env", "@babel/preset-react"],
-    plugins: [plugin, getPluginConfig()],
+    plugins: [plugin, "babel-plugin-macros", getPluginConfig()],
   });
 }
