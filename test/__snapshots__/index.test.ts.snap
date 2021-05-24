@@ -23,14 +23,13 @@ var MyComponent = function MyComponent() {
       defaultMessage: \\"Hey, You!\\"
     }
   };
-  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"Hello\\",
-      defaults: \\"Hello\\"
-    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"Hello, You\\",
-      defaults: \\"Hey, You!\\"
-    }))
-  );
+  return /*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Hello\\",
+    defaults: \\"Hello\\"
+  }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Hello, You\\",
+    defaults: \\"Hey, You!\\"
+  }));
 };
 
 exports.MyComponent = MyComponent;"
@@ -59,6 +58,56 @@ Object {
 }
 `;
 
+exports[`fixtures output match: macro-plural 1`] = `
+"\\"use strict\\";
+
+Object.defineProperty(exports, \\"__esModule\\", {
+  value: true
+});
+exports.MyComponent = void 0;
+
+var _react = require(\\"react\\");
+
+var _react2 = require(\\"@lingui/react\\");
+
+var MyComponent = function MyComponent() {
+  var tally = 5;
+  return /*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Hello\\",
+    defaults: \\"Hello\\"
+  }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"{tally, plural, one {1 person} other {# people}}\\",
+    values: {
+      tally: tally
+    }
+  }));
+};
+
+exports.MyComponent = MyComponent;"
+`;
+
+exports[`fixtures output match: macro-plural 2`] = `
+Object {
+  "Hello": Object {
+    "defaults": "Hello",
+    "origin": Array [
+      Array [
+        "test/fixtures/macro-plural/actual.js",
+        9,
+      ],
+    ],
+  },
+  "{tally, plural, one {1 person} other {# people}}": Object {
+    "origin": Array [
+      Array [
+        "test/fixtures/macro-plural/actual.js",
+        10,
+      ],
+    ],
+  },
+}
+`;
+
 exports[`fixtures output match: mixed-react-intl-trans 1`] = `
 "\\"use strict\\";
 
@@ -72,14 +121,13 @@ var _react = require(\\"react\\");
 var _react2 = require(\\"@lingui/react\\");
 
 var MyComponent = function MyComponent() {
-  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"Hello\\",
-      defaults: \\"Hello\\"
-    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"app.name\\",
-      defaults: \\"You\\"
-    }))
-  );
+  return /*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Hello\\",
+    defaults: \\"Hello\\"
+  }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"app.name\\",
+    defaults: \\"You\\"
+  }));
 };
 
 exports.MyComponent = MyComponent;"
@@ -121,17 +169,16 @@ var _react = require(\\"react\\");
 var _react2 = require(\\"@lingui/react\\");
 
 var MyComponent = function MyComponent() {
-  return (/*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"Hello {name}\\",
-      defaults: \\"Hello {name}\\",
-      values: {
-        name: 'Hao'
-      }
-    }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"Online\\",
-      defaults: \\"Online\\"
-    }))
-  );
+  return /*#__PURE__*/_react.React.createElement(_react.React.Fragment, null, /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Hello {name}\\",
+    defaults: \\"Hello {name}\\",
+    values: {
+      name: 'Hao'
+    }
+  }), /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Online\\",
+    defaults: \\"Online\\"
+  }));
 };
 
 exports.MyComponent = MyComponent;"
@@ -173,11 +220,10 @@ var _react = require(\\"react\\");
 var _react2 = require(\\"@lingui/react\\");
 
 var MyComponent = function MyComponent() {
-  return (/*#__PURE__*/_react.React.createElement(_react2.Trans, {
-      id: \\"Hello\\",
-      defaults: \\"Hello\\"
-    })
-  );
+  return /*#__PURE__*/_react.React.createElement(_react2.Trans, {
+    id: \\"Hello\\",
+    defaults: \\"Hello\\"
+  });
 };
 
 exports.MyComponent = MyComponent;"

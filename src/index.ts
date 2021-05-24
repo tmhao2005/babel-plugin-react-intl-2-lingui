@@ -67,10 +67,13 @@ export default declare((api: any) => {
   }
 
   function isReactIntlComponent(path: NodePath<t.JSXOpeningElement>): boolean {
-    const name = path.get("name");
+    // Not sure why the newer version of `@babel/core` affects the `macro-plural` test
+    // I need to investigate more
+    // the current work around is to specify the 2nd argument as `false`
+    const name = path.get("name", false);
 
     // case of namespace import? <intl.FormattedMessage />
-    //  but I yet support the namespace import, meaning this is unused for now
+    // but I yet support the namespace import, meaning this is unused for now
     if (name.isJSXMemberExpression()) {
       const object = name.get("object") as NodePath<t.JSXIdentifier>;
       const binding = object.scope.getBinding(object.node.name);
@@ -89,7 +92,7 @@ export default declare((api: any) => {
 
     return (
       t.isJSXIdentifier(path.node.name) &&
-      isReferencedToReactIntlModule(path.get("name"))
+      isReferencedToReactIntlModule(path.get("name", false))
     );
   }
 
